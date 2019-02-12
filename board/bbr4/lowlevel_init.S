@@ -43,10 +43,9 @@ lowlevel_init:
 	 * Initialize SRAM/ROM
 	 */
 
-	/* Set MEM_CONT__SR0S to 2MiB, enable MEM_CONT__SDR1E, set MEM_CONT__SDRS to 4Mib x32*/
+	/* Set MEM_CONT__SR0S to 2MiB, set MEM_CONT__SDRS to 2Mib x32*/
 	li	t0, (SWITCH_MEM_CONT__SR0S_2MB |	\
-		     SWITCH_MEM_CONT__SDR1E |		\
-		     SWITCH_MEM_CONT__SDRS_4Mx32)
+		     SWITCH_MEM_CONT__SDRS_2Mx32)
 	sw	t0, SWITCH_MEM_CONT(a1)
 
 	/* MPMC_SC1 */
@@ -195,8 +194,8 @@ lowlevel_init:
 	li	t0, 0x00000202
 	sw	t0, MPMC_DRC0(a0)
 
-	/* Set MPMC_DC0 to 0x14804500 */
-	li	t0, 0x14804500
+	/* Set MPMC_DC0 to 0x14804280 same as original boot */
+	li	t0, 0x14804280
 	sw	t0, MPMC_DC0(a0)
 
 #if (CONFIG_NR_DRAM_BANKS > 1)
